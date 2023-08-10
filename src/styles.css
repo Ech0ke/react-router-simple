@@ -42,6 +42,10 @@ body {
   text-decoration: underline;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 .nav-text-large {
   font-size: 2rem;
 }

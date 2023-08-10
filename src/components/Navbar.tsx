@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -6,13 +6,13 @@ function Navbar() {
       <div className="nav-text-large">My App</div>
       <ul className="nav-list">
         <li>
-          <Link to="/posts">Posts</Link>
+          <NavLink to="/posts">Posts</NavLink>
         </li>
         <li>
-          <Link to="/users">Users</Link>
+          <NavLink to="/users">Users</NavLink>
         </li>
         <li>
-          <Link to="/todos">Todos</Link>
+          <NavLink to="/todos">Todos</NavLink>
         </li>
       </ul>
     </nav>
