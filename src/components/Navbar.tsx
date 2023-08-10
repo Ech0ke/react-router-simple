@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -6,13 +6,13 @@ function Navbar() {
       <div className="nav-text-large">My App</div>
       <ul className="nav-list">
         <li>
-          <a href="posts.html">Posts</a>
+          <Link to="/posts">Posts</Link>
         </li>
         <li>
-          <a href="users.html">Users</a>
+          <Link to="/users">Users</Link>
         </li>
         <li>
-          <a href="todos.html">Todos</a>
+          <Link to="/todos">Todos</Link>
         </li>
       </ul>
     </nav>
