@@ -6,13 +6,19 @@ function Navbar() {
       <div className="nav-text-large">My App</div>
       <ul className="nav-list">
         <li>
-          <NavLink to="/posts">Posts</NavLink>
+          <NavLink to="/posts" end>
+            Posts
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/users" end>
+            Users
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/todos">Todos</NavLink>
+          <NavLink to="/todos" end>
+            Todos
+          </NavLink>
         </li>
       </ul>
     </nav>
