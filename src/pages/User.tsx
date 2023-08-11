@@ -1,16 +1,39 @@
+import { useLoaderData, LoaderFunctionArgs } from "react-router";
+import { getUser } from "../helpers/api/getUser";
+import { UserType } from "../types/userType";
+
+async function loader(args: LoaderFunctionArgs) {
+  const { signal } = args.request;
+  const params = args.params as { userId: string };
+  console.log(args.params);
+  return getUser(params.userId, { signal });
+}
+
 function User() {
+  const user = useLoaderData() as UserType;
+  console.log(user);
+
   return (
     <div className="container">
-      <h1 className="page-title">Leanne Graham</h1>
-      <div className="page-subtitle">Sincere@april.biz</div>
+      <h1 className="page-title">{user.name}</h1>
+      <div className="page-subtitle">{user.email}</div>
       <div>
-        <b>Company:</b> Romaguera-Crona
+        <b>Company:</b> {user.company.name}
       </div>
       <div>
-        <b>Website:</b> hildegard.org
+        <b>Website:</b>{" "}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://${user.website}`}
+        >
+          {user.website}
+        </a>
       </div>
       <div>
-        <b>Address:</b> Kulas Light Apt. 556, Gwenborough, 92998-3874
+        <b>Address:</b>
+        {` ${user.address.street}, ${user.address.suite}, ${user.address.city}, 
+        ${user.address.zipcode}`}
       </div>
       <h3 className="mt-4 mb-2">Posts</h3>
       <div className="card-grid">
@@ -127,4 +150,7 @@ function User() {
   );
 }
 
-export default User;
+export const userRoute = {
+  loader,
+  element: <User />,
+};
