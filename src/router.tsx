@@ -11,30 +11,34 @@ import Error from "./pages/Error";
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
-    errorElement: <Error />,
     children: [
-      { path: "*", element: <NotFound /> },
-      { path: "/", element: <Navigate to="/posts" /> },
       {
-        path: "posts",
+        errorElement: <Error />,
         children: [
+          { path: "*", element: <NotFound /> },
+          { path: "/", element: <Navigate to="/posts" /> },
           {
-            index: true,
-            ...postsRoute,
+            path: "posts",
+            children: [
+              {
+                index: true,
+                ...postsRoute,
+              },
+              { path: ":postId", ...postRoute },
+            ],
           },
-          { path: ":postId", ...postRoute },
+          {
+            path: "users",
+            children: [
+              { index: true, ...usersRoute },
+              { path: ":userId", ...userRoute },
+            ],
+          },
+          {
+            path: "todos",
+            ...todosRoute,
+          },
         ],
-      },
-      {
-        path: "users",
-        children: [
-          { index: true, ...usersRoute },
-          { path: ":userId", ...userRoute },
-        ],
-      },
-      {
-        path: "todos",
-        ...todosRoute,
       },
     ],
   },
