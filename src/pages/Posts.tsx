@@ -1,7 +1,5 @@
 import { useLoaderData, Link } from "react-router-dom";
 import { PostType } from "../types/postType";
-import axios from "axios";
-import { GET_POSTS } from "../../api/urls/apiUrls";
 import { getPosts } from "../helpers/api/getPosts";
 
 async function loader({
