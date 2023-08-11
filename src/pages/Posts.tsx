@@ -2,15 +2,14 @@ import { useLoaderData, Link } from "react-router-dom";
 import { PostType } from "../types/postType";
 import axios from "axios";
 import { GET_POSTS } from "../../api/urls/apiUrls";
-import { UserType } from "../types/userType";
+import { getPosts } from "../helpers/api/getPosts";
 
 async function loader({
   request: { signal },
 }: {
   request: { signal: AbortSignal };
-}): Promise<PostType[]> {
-  const res = await axios.get(GET_POSTS, { signal });
-  return res.data;
+}) {
+  return getPosts({ signal });
 }
 
 function Posts() {

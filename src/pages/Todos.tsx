@@ -1,15 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import { TodoType } from "../types/todoType";
-import { GET_TODOS } from "../../api/urls/apiUrls";
-import axios from "axios";
+import { getTodos } from "../helpers/api/getTodos";
 
 async function loader({
   request: { signal },
 }: {
   request: { signal: AbortSignal };
-}): Promise<TodoType[]> {
-  const res = await axios.get(GET_TODOS, { signal });
-  return res.data;
+}) {
+  return getTodos({ signal });
 }
 
 function Todos() {
