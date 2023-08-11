@@ -5,11 +5,15 @@ import { todosRoute } from "./pages/Todos";
 import { postRoute } from "./pages/Post";
 import { RootLayout } from "./layouts/rootLayout";
 import { userRoute } from "./pages/User";
+import NotFound from "./pages/NotFound";
+import Error from "./pages/Error";
 
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <Error />,
     children: [
+      { path: "*", element: <NotFound /> },
       { path: "/", element: <Navigate to="/posts" /> },
       {
         path: "posts",
