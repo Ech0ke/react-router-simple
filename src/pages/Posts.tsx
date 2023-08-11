@@ -1,5 +1,17 @@
 import { useLoaderData, Link } from "react-router-dom";
 import { PostType } from "../types/postType";
+import axios from "axios";
+import { GET_POSTS } from "../../api/urls/apiUrls";
+import { UserType } from "../types/userType";
+
+async function loader({
+  request: { signal },
+}: {
+  request: { signal: AbortSignal };
+}): Promise<PostType[]> {
+  const res = await axios.get(GET_POSTS, { signal });
+  return res.data;
+}
 
 function Posts() {
   const posts = useLoaderData() as PostType[];
@@ -25,4 +37,7 @@ function Posts() {
   );
 }
 
-export default Posts;
+export const postsRoute = {
+  loader,
+  element: <Posts />,
+};

@@ -1,5 +1,16 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { TodoType } from "../types/todoType";
+import { GET_TODOS } from "../../api/urls/apiUrls";
+import axios from "axios";
+
+async function loader({
+  request: { signal },
+}: {
+  request: { signal: AbortSignal };
+}): Promise<TodoType[]> {
+  const res = await axios.get(GET_TODOS, { signal });
+  return res.data;
+}
 
 function Todos() {
   const todos = useLoaderData() as TodoType[];
@@ -17,4 +28,7 @@ function Todos() {
   );
 }
 
-export default Todos;
+export const todosRoute = {
+  loader,
+  element: <Todos />,
+};

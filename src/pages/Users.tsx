@@ -1,5 +1,16 @@
 import { useLoaderData, Link } from "react-router-dom";
 import { UserType } from "../types/userType";
+import axios from "axios";
+import { GET_USERS } from "../../api/urls/apiUrls";
+
+async function loader({
+  request: { signal },
+}: {
+  request: { signal: AbortSignal };
+}): Promise<UserType[]> {
+  const res = await axios.get(GET_USERS, { signal });
+  return res.data;
+}
 
 function Users() {
   const users = useLoaderData() as UserType[];
@@ -42,4 +53,7 @@ function Users() {
   );
 }
 
-export default Users;
+export const usersRoute = {
+  loader,
+  element: <Users />,
+};
