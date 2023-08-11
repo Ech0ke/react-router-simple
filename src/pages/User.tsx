@@ -14,7 +14,7 @@ function User() {
   console.log(user);
 
   return (
-    <div className="container">
+    <>
       <h1 className="page-title">{user.name}</h1>
       <div className="page-subtitle">{user.email}</div>
       <div>
@@ -146,7 +146,7 @@ function User() {
         <li>illo expedita consequatur quia in</li>
         <li className="strike-through">quo adipisci enim quam ut ab</li>
       </ul>
-    </div>
+    </>
   );
 }
 

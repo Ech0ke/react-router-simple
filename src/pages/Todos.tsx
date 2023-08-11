@@ -13,7 +13,7 @@ async function loader({
 function Todos() {
   const todos = useLoaderData() as TodoType[];
   return (
-    <div className="container">
+    <>
       <h1 className="page-title">Todos</h1>
       <ul>
         {todos.map((todo) => (
@@ -22,7 +22,7 @@ function Todos() {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
 

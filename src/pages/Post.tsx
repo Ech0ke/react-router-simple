@@ -11,7 +11,7 @@ async function loader(args: LoaderFunctionArgs) {
 function Post() {
   const post = useLoaderData() as PostType;
   return (
-    <div className="container">
+    <>
       <h1 className="page-title">{post.title}</h1>
       <span className="page-subtitle">
         By: <a href="user.html">Leanne Graham</a>
@@ -60,7 +60,7 @@ function Post() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

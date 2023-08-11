@@ -13,7 +13,7 @@ async function loader({
 function Users() {
   const users = useLoaderData() as UserType[];
   return (
-    <div className="container">
+    <>
       <h1 className="page-title">Users</h1>
       <div className="card-grid">
         {users.map((user) => (
@@ -47,7 +47,7 @@ function Users() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
