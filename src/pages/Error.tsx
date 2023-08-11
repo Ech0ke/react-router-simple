@@ -1,16 +1,27 @@
-import Navbar from "../components/Navbar";
+import { Link, useRouteError } from "react-router-dom";
 
 function Error() {
-  if (import.meta.env.VITE_PROD_ERROR) {
+  const error: unknown = useRouteError();
+  if (import.meta.env.MODE === "production") {
     return (
       <>
-        <Navbar />
         <div className="not-found-message">
-          {import.meta.env.VITE_PROD_ERROR}
+          <h1>Error, something went wrong.</h1>
+          <Link to="/" relative="path">
+            Go home
+          </Link>
         </div>
       </>
     );
-  } else return;
+  } else {
+    return (
+      <>
+        <h1>Error, something went wrong.</h1>
+        <pre>{(error as Error)?.message}</pre>
+        <pre>{(error as Error).stack}</pre>
+      </>
+    );
+  }
 }
 
 export default Error;
