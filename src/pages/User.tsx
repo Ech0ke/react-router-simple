@@ -5,7 +5,8 @@ import { getPostsByUserId } from "../helpers/api/getPostsByUserId";
 import { getTodosByUserId } from "../helpers/api/getTodosByUserId";
 import { PostType } from "../types/postType";
 import { TodoType } from "../types/todoType";
-import { Link } from "react-router-dom";
+import TodoItem from "../components/TodoItem";
+import PostCard from "../components/PostCard";
 
 async function loader(args: LoaderFunctionArgs) {
   const { signal } = args.request;
@@ -49,28 +50,13 @@ function User() {
       <h3 className="mt-4 mb-2">Posts</h3>
       <div className="card-grid">
         {posts.map((post) => (
-          <div className="card" key={post.id}>
-            <div className="card-header">{post.title}</div>
-            <div className="card-body">
-              <div className="card-preview-text">{post.body}</div>
-            </div>
-            <div className="card-footer">
-              <Link className="btn" to={`/posts/${post.id}`}>
-                View
-              </Link>
-            </div>
-          </div>
+          <PostCard key={post.id} {...post} />
         ))}
       </div>
       <h3 className="mt-4 mb-2">Todos</h3>
       <ul>
         {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={todo.completed ? "strike-through" : undefined}
-          >
-            {todo.title}
-          </li>
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </ul>
     </>
