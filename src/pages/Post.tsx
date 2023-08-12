@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 async function loader(args: LoaderFunctionArgs) {
   const { signal } = args.request;
   const params = args.params as { postId: string };
-  const post: PostType = await getPost(params.postId, { signal });
-  const comments = await getPostComments(post.id.toString(), {
+  const comments = getPostComments(params.postId, {
     signal,
   });
-  const user = await getUser(post.userId.toString(), { signal });
+  const post: PostType = await getPost(params.postId, { signal });
 
-  return { post, comments, user };
+  const user = getUser(post.userId.toString(), { signal });
+
+  return { post, comments: await comments, user: await user };
 }
 
 function Post() {
@@ -29,10 +30,7 @@ function Post() {
     <>
       <h1 className="page-title">{post.title}</h1>
       <span className="page-subtitle">
-        By:{" "}
-        <Link to={`/users/${user.id}`} relative="path">
-          {user.name}
-        </Link>
+        By: <Link to={`/users/${user.id}`}>{user.name}</Link>
       </span>
       <div>{post.body}</div>
       <h3 className="mt-4 mb-2">Comments</h3>
